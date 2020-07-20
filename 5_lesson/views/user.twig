@@ -1,0 +1,8 @@
+{% extends '/layouts/main.twig' %}
+{% block content %}
+<h1>Пользователь</h1>
+<p style="color: red">Имя: {{ user.name }}</p>
+<p style="color: green">Логин: {{ user.login }}</p>
+
+<a href="?c=user&a=all">Назад</a>
+{% endblock %}
