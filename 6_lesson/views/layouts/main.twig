@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/9d71517162.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/site.js"></script>
+    <link rel="stylesheet" href="/css/site.css">
+    <title>{% block title %} PHP_2_lvl {% endblock %}</title>
+</head>
+<body>
+<header>
+    <div id="headerInside">
+        <div id="logo"></div>
+        <div id="companyName">Brand</div>
+        <div id="navWrap">
+            <a href="/">
+                Главная
+            </a>
+            <a href="/user/all">
+                Пользователи
+            </a>
+            <a href="/basket">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="/shop">
+                Магазин
+            </a>
+            <a href="/shop/addGoodPage">
+                Добавить товар в БД
+            </a>
+            <a href="/login/">
+                Войти
+            </a>
+            <a href="/registration/">Регистрация</a>
+        </div>
+    </div>
+</header>
+    {% block content %} {% endblock %}
+
+<footer>
+    <div id="footerInside">
+
+        <div id="contacts">
+            <div class="contactWrap">
+                <img src="/images/envelope.svg" class="contactIcon">
+                info@brandshop.ru
+            </div>
+            <div class="contactWrap">
+                <img src="/images/phone-call.svg" class="contactIcon">
+                8 800 555 00 00
+            </div>
+            <div class="contactWrap">
+                <img src="/images/placeholder.svg" class="contactIcon">
+                Москва, пр-т Ленина, д. 1 офис 304
+            </div>
+        </div>
+
+        <div id="footerNav">
+            <a href="/user">Главная</a>
+            <a href="/user/all">Пользователи</a>
+            <a href="/shop">Магазин</a>
+            <a href="/basket">Корзина</a>
+            <a href="/shop/addGoodPage">Добавить товар в БД</a>
+        </div>
+
+        <div id="social">
+            <img class="socialItem" src="/images/vk-social-logotype.svg">
+            <img class="socialItem" src="/images/google-plus-social-logotype.svg">
+            <img class="socialItem" src="/images/facebook-logo.svg">
+        </div>
+
+        <div id="copyrights">&copy; Brand</div>
+    </div>
+</footer>
+</body>
+</html>
