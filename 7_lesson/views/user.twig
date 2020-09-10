@@ -1,0 +1,16 @@
+{% extends isAdmin == 0
+    ? '/layouts/main.twig'
+    : '/layouts/mainAdmin.twig' %}
+{% block content %}
+<div id="content">
+    {% if isSingIn %}
+        <h1>Приветствую Вас на личной странице {{ user.login }}</h1>
+    {% else %}
+        <h1>Пользователь</h1>
+    {% endif %}
+    <p style="color: red">Имя: {{ user.name }}</p>
+    <p style="color: green">Логин: {{ user.login }}</p>
+
+    <a href="/user/all">Назад</a>
+</div>
+{% endblock %}

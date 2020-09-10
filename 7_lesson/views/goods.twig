@@ -1,0 +1,37 @@
+{% extends isAdmin == 0
+    ? '/layouts/main.twig'
+    : '/layouts/mainAdmin.twig' %}
+{% block title %} Товары {% endblock %}
+{% block content %}
+<div id="content">
+<h1>Каталог</h1>
+<div>
+    {% for good in paginator.getItems() %}
+        <div class="shopUnit">
+            <img src="images/goods/{{ good.img }}" alt="phone">
+            <div class="shopUnitName">
+                {{ good.name }}
+            </div>
+            <div class="shopUnitShortDesc">
+                {{ good.description }}
+            </div>
+            <div class="shopUnitPrice">
+                Цена {{ good.price }} $
+            </div>
+            <a href="/shop/one?id={{good.id}}&article={{ good.article }}" class="shopUnitMore">
+                Подробнее
+            </a>
+            <a href="/shop/del/?id={{good.id}}&article={{ good.article }}" class="shopUnitMore">
+                Удалить
+            </a>
+        </div>
+    {% endfor %}
+    {% if paginator.getUrls() is not empty %}
+        <p>Страницы</p>
+        {% for page, urls in paginator.getUrls() %}
+            <a href="{{ urls }}">{{ page }}</a>
+        {% endfor %}
+    {% endif %}
+</div>
+</div>
+{% endblock %}
