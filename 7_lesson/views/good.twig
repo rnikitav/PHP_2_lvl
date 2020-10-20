@@ -1,0 +1,61 @@
+{% extends isAdmin == 0
+    ? '/layouts/main.twig'
+    : '/layouts/mainAdmin.twig' %}
+{% block title %} {{ good.name }} {% endblock %}
+{% block content %}
+<div id="content">
+<div id="openedProduct-img">
+    <img src="/images/goods/{{ good.img }}" alt="photo">
+</div>
+<div id="openedProduct-content">
+    <h1 id="openedProduct-name">
+        {{ good.name }}
+    </h1>
+    <div id="openedProduct-desc">
+        {{ good.description }}
+    </div>
+    <div id="openedProduct-price">
+        Цена: {{ good.price }} $
+    </div>
+    <div class="btnByu">
+        <a href="/basket/add/?article={{ good.article }}&id={{ good.id }}" class="addToCart">Добавить в корзину PHP</a>
+    </div>
+</div>
+    {% if good.article %}
+    <form method="post" action="/shop/addComment?article={{good.article}}&id={{ good.id }}">
+        <input type="text" placeholder="Ваш комментарий" name="commit" size="40">
+        <input type="submit">
+    </form>
+    {% endif %}
+    {% if isAdmin %}
+<button class="editInfo">Изменить информаци</button>
+    {% endif %}
+<div class="hidden divEdit">
+    <form method="post" action="/shop/editInfo/?article={{ good.article }}&id={{ good.id }}" class="editInfoForm">
+        <input type="text" name="name" placeholder="Name" class="editInput" value="{{ good.name }}">
+        <input type="text" name="price" placeholder="Price" class="editInput" value="{{ good.price }}">
+        <input type="text" name="description" placeholder="Description" class="editInput" value="{{good.description}}">
+        <input type="text" name="img" placeholder="img" class="editInput" value="{{ good.img }}">
+        <input type="text" name="article" placeholder="article" class="editInput" value="{{ good.article }}">
+        <input type="submit" value="Отправить изменения" class="editBtn">
+    </form>
+    <button class="closeEditInfo">Закрыть</button>
+</div>
+<div class="comments">
+    {% for comment in comments %}
+        <h3>{{ comment.comment }}</h3>
+    {% endfor %}
+</div>
+</div>
+<script>
+    let btn = document.querySelector('.editInfo');
+    let clsBtn = document.querySelector('.closeEditInfo');
+    let divEdit = document.querySelector('.divEdit');
+    btn.addEventListener('click', function () {
+        divEdit.classList.remove('hidden');
+    });
+    clsBtn.addEventListener('click', () => {
+        divEdit.classList.add('hidden');
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends isAdmin == 0
+    ? '/layouts/main.twig'
+    : '/layouts/mainAdmin.twig' %}
+{% block content %}
+<div id="content">
+    <h1>{{ msg }}</h1>
+</div>
+    {% endblock %}

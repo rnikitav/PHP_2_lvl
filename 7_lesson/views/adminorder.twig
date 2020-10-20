@@ -1,0 +1,29 @@
+{% extends isAdmin == 0
+    ? '/layouts/main.twig'
+    : '/layouts/mainAdmin.twig' %}
+{% block title %} Личный кабинет {% endblock %}
+{% block content %}
+    <div id="content">
+        <h1 style="color: red">{{ msg }}</h1>
+        {% for one in orders %}
+        <div>
+            <p>{{ one.id }}</p>
+            <p>{{ one.time }}</p>
+            <p>{{ one.address}}></p>
+            <p>{{ one.buyer}}</p>
+            <p>{{ one.goods}}</p>
+{#            <form action="/?p=order&a=changeStatus&id=<?=$one['id']?>" method="post">#}
+            <form action="/lk/changeStatus&id={{ one.id }}" method="post">
+                <select name="status" id="status">
+                    <option value="{{one.status}}" selected>{{one.status}}</option>
+                    <option value="Оплачен">Оплачен</option>
+                    <option value="Отправлен">Отправлен</option>
+                    <option value="Доставлен">Доставлен</option>
+                    <option value="Принят">Принят</option>
+                </select>
+                <input type="submit" value="Изменить">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

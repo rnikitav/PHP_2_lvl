@@ -1,0 +1,51 @@
+{% extends isAdmin == 0
+    ? '/layouts/main.twig'
+    : '/layouts/mainAdmin.twig' %}
+{% block title %} Личный кабинет {% endblock %}
+{% block content %}
+    <div id="content">
+        <h1>Личный кабинет</h1>
+        <a href="/lk/exit">Выход</a>
+        {% for order in orders %}
+            <h1>Заказ № {{ loop.index }}</h1>
+            <p>time  {{ order.time }}</p>
+            <p>address  {{ order.address }}</p>
+            {% for good in order.goods %}
+                <div class="product__details__middle__one__item">
+                    <a href="#">
+                        <img src="/images/goods/{{ good.img }}" alt="photo">
+                    </a>
+
+                    <div class="product__details__middle__one__item__left">
+                        <a href="#"><h3>{{ good.name }}</h3></a>
+                    </div>
+                    <div class="product__details__middle__one__item__right">
+                        <p>{{ good.price }}$</p>
+                        <div class="cart__product-param quantity">
+                            <div class="cart__product-quantity">
+                                <h5 style="color: red">{{ good.count }}</h5>
+                            </div>
+                        </div>
+                        <p>FREE</p>
+                        <p>${{ good.price * good.count}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            <h2 style="color: blue">status  {{ order.status }}</h2>
+{#            {{ dump(order) }}#}
+{#            {% for prod in order.goods %}#}
+{#                <p>Имя: {{ prod }}</p>#}
+{#            {% endfor %}#}
+{#            <p>Имя: {{ order.goods }}</p>#}
+{#            <p>Логин: {{ user.address }} </p>#}
+{#            <a href="/user/one/?id={{ user.id }}">Подробнее</a>#}
+{#            <hr>#}
+        {% endfor %}
+{#        {% if users.getUrls() is not empty %}#}
+{#            <p>Страницы</p>#}
+{#            {% for page, urls in users.getUrls() %}#}
+{#                <a href="{{ urls }}">{{ page }}</a>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+    </div>
+{% endblock %}
