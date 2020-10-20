@@ -7,9 +7,7 @@ namespace App\services;
 use App\entities\Basket;
 use App\repositories\BasketRepository;
 
-
-class  BasketService extends Service
-
+class BasketService
 {
     public function show(Request $request)
     {
@@ -18,24 +16,21 @@ class  BasketService extends Service
 
     public function add($id, Request $request, $article)
     {
-
         $goodForBasket = new Basket();
 
         if (!empty($getSession = $request->getSession('goods', $article))){
             $getSession->count++;
             return $_SESSION['goods'];
         }
-//        $res = (new BasketRepository())->getOne($id);
-        $res = $this->container->basketRepository->getOne($id);
+        $res = (new BasketRepository())->getOne($id);
 
         foreach ($goodForBasket as $key =>  $value){
             $goodForBasket->$key = $res->$key;
         }
         $goodForBasket->count = 1;
-        $request->setSession('goods' , $article, $goodForBasket);
-//        $_SESSION['goods'][$article] = $goodForBasket;
+        $_SESSION['goods'][$article] = $goodForBasket;
 
-        return $request->getSession('goods');
+        return $_SESSION['goods'];
     }
 
     public function del( Request $request, $article)
@@ -67,9 +62,4 @@ class  BasketService extends Service
         }
         return $sum;
     }
-
-    private function sumPrivate($a, $b)
-    {
-        return $a + $b;
-    }
-
+}

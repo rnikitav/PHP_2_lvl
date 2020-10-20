@@ -1,0 +1,27 @@
+{% extends '/layouts/main.twig' %}
+{% block title %} Регистрация {% endblock %}
+{% block content %}
+    <div class="register">
+        <form method="post" action="" class="login">
+            <p>
+                <label for="login">Логин:</label>
+                <input type="text" name="login" id="login" value="{{ data.login }}">
+            </p>
+
+            <p>
+                <label for="password">Пароль:</label>
+                <input type="password" name="password" id="password" value="{{data.password}}">
+            </p>
+
+            <p class="login-submit">
+                <button type="submit" class="login-button">Зарегистрироваться</button>
+            </p>
+
+            <p class="forgot-password"><a href="/login/">У Вас уже есть профиль?</a></p>
+
+        <h3 style='color: #f44355'>{{ msg }}</h3>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends '/layouts/main.twig' %}
+{% block content %}
+<div id="content">
+<h1>Добавление товара</h1>
+<h3>{{ msg }}</h3>
+
+<form method="post" action="/shop/addGoodPage" class="editInfoForm">
+<input type="text" name="name" placeholder="Name" class="editInput" value="{{ data.name }}">
+<input type="text" name="price" placeholder="Price" class="editInput" value="{{ data.price }}">
+<input type="text" name="description" placeholder="Description" class="editInput" value="{{ data.description }}">
+<input type="text" name="img" placeholder="img" class="editInput" value="{{ data.img }}">
+<input type="text" name="article" placeholder="article" class="editInput" value="{{ data.article }}">
+<input type="submit" value="Отправить изменения" class="editBtn">
+</form>
+</div>
+{% endblock %}
